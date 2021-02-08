@@ -177,7 +177,7 @@ class Game:
         return self.player_hand.get_value() > 21
 
     def check_for_dealer(self):                                                                                   #Checks if the dealer gets 17 or more
-        return self.dealer_hand.get_value() <= 17
+        return self.dealer_hand.get_value() < 17
 
     def dealer_is_over(self):
         return self.dealer_hand.get_value() > 21
