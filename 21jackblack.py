@@ -54,9 +54,13 @@ class Hand:                                                                     
         return self.value
 
     def display(self):                                                                                  #show the cards we have on hand
-        for card in self.cards:
-            print(card)
-        print("Value:", self.get_value())
+        if self.dealer:
+            print("hidden")
+            print(self.cards[1])
+        else:
+            for card in self.cards:
+                print(card)
+            print("Value", self.get_value())
 
 class Game:
     def __init__(self):
@@ -105,8 +109,8 @@ class Game:
                     self.player_hand.add_card(self.deck.deal())
                     print("Now your hand is:")
                     self.player_hand.display()
-                    print("Now the dealer's hand is:")
-                    self.dealer_hand.display()
+                    print()
+
 
 
 
@@ -132,35 +136,36 @@ class Game:
                         self.win += 1
                         game_over = True
 
-                    player_hand_value = self.player_hand.get_value()
-                    dealer_hand_value = self.dealer_hand.get_value()
-
-
-                    print("Final Results")
-                    print("Your Hand:", player_hand_value)
-                    print()
-                    print("Dealer's Hand:", dealer_hand_value)
-
-                    if player_hand_value > dealer_hand_value:
-                        print("You Win!")
-                        self.win += 1
-                        print()
-                    elif player_hand_value == dealer_hand_value:
-                        print("Draw")
-                        self.tie += 1
 
                     else:
-                        print("You Lose!")
-                        self.lost += 1
+                        player_hand_value = self.player_hand.get_value()
+                        dealer_hand_value = self.dealer_hand.get_value()
+
+
+                        print("Final Results")
+                        print("Your Hand:", player_hand_value)
                         print()
+                        print("Dealer's Hand:", dealer_hand_value)
+
+                        if player_hand_value > dealer_hand_value:
+                            print("You Win!")
+                            self.win += 1
+                            print()
+                        elif player_hand_value == dealer_hand_value:
+                            print("Draw")
+                            self.tie += 1
+
+                        else:
+                            print("You Lose!")
+                            self.lost += 1
+                            print()
                     game_over = True
 
 
             print("Your hand is:")
             self.player_hand.display()
             print()
-            print("Dealer's hand is:")
-            self.dealer_hand.display()
+        
             print("Summary:")
             print("Games Won",self.win)
             print("Games Lost",self.lost)
