@@ -121,6 +121,7 @@ class Game:
                         game_over = True
                     if self.dealer_is_over():
                         print("You Win!, The Dealer went over")
+                        print("Dealer's Hand:", self.dealer_hand.get_value())
                         print()
                         self.win += 1
                         game_over = True
@@ -132,7 +133,7 @@ class Game:
                         self.dealer_hand.add_card(self.deck.deal())
                     if self.dealer_is_over():
                         print("You Win!, The Dealer went over")
-                        print()
+                        print("Dealer's Hand:", self.dealer_hand.get_value())
                         self.win += 1
                         game_over = True
 
@@ -165,7 +166,7 @@ class Game:
             print("Your hand is:")
             self.player_hand.display()
             print()
-        
+
             print("Summary:")
             print("Games Won",self.win)
             print("Games Lost",self.lost)
