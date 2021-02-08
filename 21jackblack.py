@@ -126,6 +126,11 @@ class Game:
 
                     if self.check_for_dealer():
                         self.dealer_hand.add_card(self.deck.deal())
+                    if self.dealer_is_over():
+                        print("You Win!, The Dealer went over")
+                        print()
+                        self.win += 1
+                        game_over = True
 
                     player_hand_value = self.player_hand.get_value()
                     dealer_hand_value = self.dealer_hand.get_value()
@@ -136,7 +141,7 @@ class Game:
                     print()
                     print("Dealer's Hand:", dealer_hand_value)
 
-                    if player_hand_value > dealer_hand_value or dealer_hand_value > 21:
+                    if player_hand_value > dealer_hand_value:
                         print("You Win!")
                         self.win += 1
                         print()
