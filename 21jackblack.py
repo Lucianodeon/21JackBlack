@@ -46,7 +46,7 @@ class Hand:                                                                     
                 else:                                                                                   #if is a figure
                     self.value+= 10
 
-        if has_ace and self.value < 11:
+        if has_ace and self.value <= 11:
                 self.value +=10                                                                                #The ace can be 1 or 11, so if the value of the ace being 11 surpass 21 will become 1
 
     def get_value(self):
