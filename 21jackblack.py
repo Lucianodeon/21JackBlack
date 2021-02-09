@@ -33,21 +33,21 @@ class Hand:                                                                     
     def add_card(self, card):
         self.cards.append(card)
 
-def calculate_value(self):
-    self.value = 0
-    has_ace = False
-    for card in self.cards:
-        if card.value.isnumeric():
-            self.value += int(card.value)
-        else:
-            if card.value == "Ace":
-                has_ace = True
-                self.value += 1
-            else:                                                                                   #if is a figure
-                self.value+= 10
+    def calculate_value(self):
+        self.value = 0
+        has_ace = False
+        for card in self.cards:
+            if card.value.isnumeric():
+                self.value += int(card.value)
+            else:
+                if card.value == "Ace":
+                    has_ace = True
+                    self.value += 1
+                else:                                                                                   #if is a figure
+                    self.value+= 10
 
-    if has_ace and self.value < 11:
-        self.value +=10                                                                                #The ace can be 1 or 11, so if the value of the ace being 11 surpass 21 will become 1
+            if has_ace and self.value < 11:
+                self.value +=10                                                                                #The ace can be 1 or 11, so if the value of the ace being 11 surpass 21 will become 1
 
     def get_value(self):
         self.calculate_value()
