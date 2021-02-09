@@ -25,7 +25,8 @@ class Deck:                                                                     
             return self.cards.pop(0)
 
 class Hand:                                                                                              #The cards on hand, I decided to not hide the dealer's hand for more easiness, so we can follow the game quickly
-    def __init__(self, dealer=False):
+    def __init__(self, dealer=False, reveal=True):
+        self.reveal = reveal
         self.dealer = dealer
         self.cards = []
         self.value = 0
@@ -54,7 +55,7 @@ class Hand:                                                                     
         return self.value
 
     def display(self):                                                                                  #show the cards we have on hand
-        if self.dealer:
+        if self.dealer and self.reveal == False:
             print("hidden")
             print(self.cards[1])
         else:
@@ -76,7 +77,7 @@ class Game:
             self.deck.shuffle()
 
             self.player_hand = Hand()
-            self.dealer_hand = Hand(dealer=True)
+            self.dealer_hand = Hand(dealer=True, reveal=False)                                                              #set dealer instance as a dealer and not reveal (not showing the first card)
 
             for i in range(2):          #picks the first 2 cards
                 self.player_hand.add_card(self.deck.deal())
@@ -162,11 +163,13 @@ class Game:
                             print()
                     game_over = True
 
-
+            setattr(self.dealer_hand, 'reveal', True)                                               #after the game ends dealer_hand instance change to reveal his cards.
             print("Your hand is:")
             self.player_hand.display()
             print()
-
+            print("Dealer's hand is:")
+            self.dealer_hand.display()
+            print()
             print("Summary:")
             print("Games Won",self.win)
             print("Games Lost",self.lost)
